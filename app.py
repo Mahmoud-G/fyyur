@@ -31,9 +31,6 @@ db = SQLAlchemy(app)
 
 # TODO: connect to a local postgresql database
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-
 migrate = Migrate(app, db)
 
 #----------------------------------------------------------------------------#
