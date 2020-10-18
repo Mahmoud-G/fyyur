@@ -1,4 +1,5 @@
 {% extends 'layouts/main.html' %}
+
 {% block title %}{{ artist.name }} | Artist{% endblock %}
 {% block content %}
 <div class="row">
@@ -10,9 +11,13 @@
 			ID: {{ artist.id }}
 		</p>
 		<div class="genres">
+		{% if artist.genres %}
+
+
 			{% for genre in artist.genres %}
 			<span class="genre">{{ genre }}</span>
 			{% endfor %}
+		{% endif %}
 		</div>
 		<p>
 			<i class="fas fa-globe-americas"></i> {{ artist.city }}, {{ artist.state }}
@@ -44,7 +49,7 @@
 	</div>
 </div>
 <section>
-	<h2 class="monospace">{{ artist.upcoming_shows_count }} Upcoming {% if artist.upcoming_shows_count == 1 %}Show{% else %}Shows{% endif %}</h2>
+	<h2 class="monospace">{{ artist.num_upcoming_shows }} Upcoming {% if artist.num_upcoming_shows == 1 %}Show{% else %}Shows{% endif %}</h2>
 	<div class="row">
 		{%for show in artist.upcoming_shows %}
 		<div class="col-sm-4">
@@ -58,7 +63,7 @@
 	</div>
 </section>
 <section>
-	<h2 class="monospace">{{ artist.past_shows_count }} Past {% if artist.past_shows_count == 1 %}Show{% else %}Shows{% endif %}</h2>
+	<h2 class="monospace">{{ artist.num_past_shows }} Past {% if artist.num_past_shows == 1 %}Show{% else %}Shows{% endif %}</h2>
 	<div class="row">
 		{%for show in artist.past_shows %}
 		<div class="col-sm-4">
