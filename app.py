@@ -395,10 +395,19 @@ def show_artist(artist_id):
 #  ----------------------------------------------------------------
 @app.route('/artists/<int:artist_id>/edit', methods=['GET'])
 def edit_artist(artist_id):
-  # form = ArtistForm()
-  query = Artist.query.get(artist_id)
   form = ArtistForm()
+
   # TODO: populate form with fields from artist with ID <artist_id>
+
+  query = Artist.query.get(artist_id)
+
+  form.name.data = query.name
+  form.city.data = query.city
+  form.state.data = query.state
+  form.phone.data = query.phone
+  form.genres.data = query.genres
+  form.facebook_link.data = query.facebook_link
+
   return render_template('forms/edit_artist.html', form=form, artist=query)
 
 @app.route('/artists/<int:artist_id>/edit', methods=['POST'])
@@ -445,10 +454,22 @@ def edit_artist_submission(artist_id):
 
 @app.route('/venues/<int:venue_id>/edit', methods=['GET'])
 def edit_venue(venue_id):
-  query = Venue.query.get(venue_id)
-  form = VenueForm()
 
+  form = VenueForm()
   # TODO: populate form with values from venue with ID <venue_id>
+
+  query = Venue.query.get(venue_id)
+
+  form.name.data = query.name
+  form.city.data = query.city
+  form.state.data = query.state
+  form.address.data = query.address
+  form.phone.data = query.phone
+  form.image_link.data = query.image_link
+  form.genres.data = query.genres
+  form.facebook_link.data = query.facebook_link
+
+
   return render_template('forms/edit_venue.html', form=form, venue=query)
 
 @app.route('/venues/<int:venue_id>/edit', methods=['POST'])
